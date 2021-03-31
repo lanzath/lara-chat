@@ -17,13 +17,21 @@ class MessageController extends Controller
 
     /**
      * Get all messages.
+     *
+     * @return JsonResponse
      */
     public function index(): JsonResponse
     {
         return response()->json(Message::with('user')->get(), 200);
     }
 
-    public function store(Request $request)
+    /**
+     * Store user's message in database.
+     *
+     * @param  Request $request
+     * @return array
+     */
+    public function store(Request $request): array
     {
         $user = Auth::user();
 
